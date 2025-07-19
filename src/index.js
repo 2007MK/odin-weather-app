@@ -1,3 +1,3 @@
 import "./styles.css";
-import weatherDataHandler from './weather'
+import weatherDataHandler from "./weather";
 import "./dom";

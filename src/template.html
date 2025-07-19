@@ -19,11 +19,14 @@
         <img src="" alt="icon" />
         <div class="temperature-and-day">
           <div class="temperature">
-            <h1></h1><sup class="unit"></sup>
+            <h1></h1>
+            <sup class="unit"></sup>
           </div>
-          <div class="day-and-time"><span class="day">Monday</span>, <span class="time">12:00</span></div>
+          <div class="day-and-time">
+            <span class="day">Monday</span>, <span class="time">12:00</span>
+          </div>
         </div>
-        <hr>
+        <hr />
         <div class="weather-info">
           <div class="condition">Mostly Cloudy</div>
           <div class="rain">Rain - 30%</div>
@@ -32,7 +35,30 @@
           <p>New York, NY, USA</p>
         </div>
       </div>
-      <div class="main"></div>
+      <div class="main">
+        <div class="header">
+          <div class="toggleUnit">
+            <button class="unitBtn" id="celsius">&deg;C</button>
+            <button class="unitBtn selected" id="fahrenheit">&deg;F</button>
+          </div>
+        </div>
+        <div class="forecast">
+          <div class="card-small" id="">
+            <div class="dayOfTheWeek">Sun</div>
+            <img src="" alt="" class="weather-icon" />
+            <div class="temp">
+              <span class="max-temp">15&deg;</span
+              ><span class="min-temp">3&deg;</span>
+            </div>
+          </div>
+          <div class="card-small" id=""></div>
+          <div class="card-small" id=""></div>
+          <div class="card-small" id=""></div>
+          <div class="card-small" id=""></div>
+          <div class="card-small" id=""></div>
+          <div class="card-small" id=""></div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
