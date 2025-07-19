@@ -1,0 +1,94 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.container {
+  border: 1px solid black;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas: "sidebar main";
+}
+
+.sidebar {
+  grid-area: sidebar;
+  border: 1px solid blue;
+  background-color: #ffffff;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.search-container {
+    align-self: center;
+  display: flex;
+  gap: 10px;
+}
+
+.search-container > input[type="search"] {
+  /* border-radius: 15px; */
+  padding: 8px 8px;
+  background-color: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.search-container > button {
+  border: none;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+}
+
+.sidebar > img {
+    height: 150px;
+    width: 150px;
+    align-self: center;
+}
+
+.temperature {
+    display: flex;
+}
+
+.sidebar > .temperature-and-day > .temperature > h1 {
+    font-size: 7rem;
+}
+
+.sidebar > .temperature-and-day > .temperature > .unit {
+    font-size: 3rem;
+}
+
+.time, .day {
+    font-size: 1.5rem;
+}
+
+.day-and-time > .time {
+    color: gray;
+}
+
+.address {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: darkblue;
+    color: white;
+    height: 100px;
+    border-radius: 20px;
+    font-size: 20px;
+}
+
+
+.main {
+  background-color: #fafafa;
+  grid-area: main;
+  border: 1px solid red;
+}
