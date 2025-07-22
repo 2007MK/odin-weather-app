@@ -1,3 +1,12 @@
 import "./styles.css";
-import weatherDataHandler from "./weather";
-import "./dom";
+import { render } from "./render";
+import {weatherDataHandler} from './weather';
+
+
+async function loadPage() {
+    render.sidebar();
+    render.main();
+    await weatherDataHandler.fetchData('mysuru')
+}
+
+loadPage();

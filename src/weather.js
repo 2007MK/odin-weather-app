@@ -10,6 +10,10 @@ const weatherDataHandler = (function () {
     return weatherData;
   }
 
+  function getTemperatureUnit() {
+    return temperatureUnit;
+  }
+
   async function fetchData(location) {
     try {
       const response = await fetch(
@@ -20,21 +24,12 @@ const weatherDataHandler = (function () {
         throw new Error(`Couldn't fetch the weather data for ${location}`);
       }
 
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
-  }
+      const data = await response.json(); 
 
-  async function formatData(location) {
-    const data = await fetchData(location);
-    console.log(data);
+      //getting the data I need
 
-    // main weather icon
-    let { icon } = data.currentConditions;
-    icon = icon.split("-").join("");
-    console.log(icon);
+    let mainWeatherIcon = data.currentConditions.icon;
+    mainWeatherIcon = mainWeatherIcon.split("-").join("");
 
     // temperature
     let { temp } = data.currentConditions;
@@ -58,9 +53,13 @@ const weatherDataHandler = (function () {
     // Address
     const address = data.resolvedAddress;
 
-    weatherData = {icon, temp, day, time, condition, precipitation, address}
+    weatherData = {mainWeatherIcon, temp, day, time, condition, precipitation, address}
 
-    displayData(weatherData);
+    console.log(weatherData);
+    displayData();
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   function ConvertToCelsius(temp) {
@@ -72,28 +71,27 @@ const weatherDataHandler = (function () {
   }
 
   function toggleUnit(unit) {
-    const data = getWeatherData();
-    const mainTemperature = document.querySelector('.temperature > h1');
-    console.log(mainTemperature.textContent);
-    switch (unit) {
-      case "celsius": {
-        mainTemperature.textContent = ConvertToCelsius(data.temp);
-        weatherData.temp = ConvertToCelsius(data.temp);
-        temperatureUnit = "C";
-        break;
-      }
-      case "fahrenheit": {
-        mainTemperature.textContent = ConvertToFahrenheit(data.temp);
-        weatherData.temp = ConvertToFahrenheit(data.temp);
-        temperatureUnit = "F";
-        break;
-      }
-    }
+    // const {temp} = getWeatherData();
+    //if (temperatureUnit == unit) {
+      //return;
+    //} else {      
+      //const temperatureH1 = document.querySelector('.temperature-and-day > .temperature > h1');
+      //switch (unit) {
+//        case "C": {
+          //weatherData.temp = Math.round(ConvertToFahrenheit(temp));
+          //temperatureUnit = "F";
+        //}
+//        
+        //case "F": {
+//          weatherData.temp = Math.round(ConvertToCelsius(temp));
+          //temperatureUnit = "C";
+        //}
+        //temperatureH1.textContent = weatherData.temp;
+      //}
+    //}
   }
 
-  formatData("mysuru");
-
-  return { temperatureUnit, formatData, toggleUnit, getWeatherData };
+  return { getTemperatureUnit, toggleUnit, fetchData, getWeatherData, getTemperatureUnit };
 })();
 
-export default weatherDataHandler;
+export {weatherDataHandler};

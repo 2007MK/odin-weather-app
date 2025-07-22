@@ -1,4 +1,4 @@
-import weatherDataHandler from "./weather";
+import { weatherDataHandler } from "./weather";
 
 // importing all the icons
 import clearday from "./assets/clear-day.svg";
@@ -49,16 +49,6 @@ const icons = {
   wind,
 };
 
-// search function
-const search = document.querySelector("#search");
-const searchBtn = document.querySelector(
-  ".search-container > button[type='submit']",
-);
-searchBtn.addEventListener("click", () => {
-  const query = search.value;
-  weatherDataHandler.formatData(query);
-});
-
 // toggle unit
 let unitBtns = document.querySelectorAll(".unitBtn");
 unitBtns.forEach((btn) => {
@@ -68,30 +58,26 @@ unitBtns.forEach((btn) => {
     });
     if (e.target.id == "celsius") {
       e.target.classList.add("selected");
-      weatherDataHandler.toggleUnit("celsius");
+      weatherDataHandler.toggleUnit("C");
     }
     if (e.target.id == "fahrenheit") {
       e.target.classList.add("selected");
-      weatherDataHandler.toggleUnit("fahrenheit");
+      weatherDataHandler.toggleUnit("F");
     }
   });
 });
 
-function displayData(data) {
-  console.log(data);
-  // displaying main weather icon [today's weather]
-  const { icon } = data;
-  let mainWeatherIcon = document.querySelector(".sidebar > img");
-  mainWeatherIcon.src = icons[icon];
+function displayData() {
+  const data = weatherDataHandler.getWeatherData();
+  // displaying main weather mainWeatherIcon [today's weather]
+  const { mainWeatherIcon } = data;
+  let icon = document.querySelector(".sidebar > img");
+  icon.src = icons[mainWeatherIcon];
   // displaying temperature
   const temperature = document.querySelector(".temperature > h1");
   const temperatureUnit = document.querySelector(".temperature > .unit");
   const { temp } = data;
-  if (weatherDataHandler.temperatureUnit == "C") {
-    temperatureUnit.textContent = "\u00B0" + "C";
-  } else {
-    temperatureUnit.textContent = "\u00B0" + "F";
-  }
+    temperatureUnit.textContent = "\u00B0" + weatherDataHandler.getTemperatureUnit();
   temperature.textContent = temp;
 
   // displaying Day and Time
@@ -114,8 +100,5 @@ function displayData(data) {
   addressInfo.textContent = address;
 }
 
-function displayIcons() {
-  //logic
-}
 
-export { displayData, displayIcons };
+export { displayData};
