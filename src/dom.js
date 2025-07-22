@@ -98,6 +98,20 @@ function displayData() {
   const addressInfo = document.querySelector(".address");
   const { address } = data;
   addressInfo.textContent = address;
+
+
+  // displaying 7 days forecast 
+  let {next7days} = data;
+  let cardTitles = document.querySelectorAll('.card-small > .dayOfTheWeek');
+  let weatherIcons = document.querySelectorAll('.card-small > .weather-icon');
+  for(let i = 0; i < cardTitles.length; i++) {
+    cardTitles[i].textContent = next7days[i].day;
+    weatherIcons[i].src = icons[next7days[i].icon];
+
+  }
+
+  console.log(cardTitles);
+  
 }
 
 

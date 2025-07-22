@@ -25,6 +25,7 @@ const weatherDataHandler = (function () {
       }
 
       const data = await response.json(); 
+      console.log(data);
 
       //getting the data I need
 
@@ -53,7 +54,19 @@ const weatherDataHandler = (function () {
     // Address
     const address = data.resolvedAddress;
 
-    weatherData = {mainWeatherIcon, temp, day, time, condition, precipitation, address}
+    
+    // Next 7 days forecast
+    let next7days = {};
+    for (let i = 0; i < 7; i++) {
+      let dayData = data.days[i+1];
+      const {tempmax, tempmin, icon} = dayData;
+      next7days[i] = {tempmax, tempmin,
+        icon : dayData.icon.split('-').join(""),
+        day: format(new Date(dayData.datetimeEpoch * 1000), "eeee"),
+      }
+    }
+    
+    weatherData = {mainWeatherIcon, temp, day, time, condition, precipitation, address, next7days}
 
     console.log(weatherData);
     displayData();
