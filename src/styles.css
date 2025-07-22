@@ -141,3 +141,9 @@ body {
   justify-content: space-between;
   border: 2px solid blue;
 }
+
+.card-small > img {
+  height : 50px;
+  width : 50px;
+  }
+
