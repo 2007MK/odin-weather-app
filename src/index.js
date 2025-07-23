@@ -6,7 +6,7 @@ import {weatherDataHandler} from './weather';
 async function loadPage() {
     render.sidebar();
     render.main();
-    await weatherDataHandler.fetchData('mysuru')
+    await weatherDataHandler.fetchData('bangalore')
 }
 
 loadPage();
