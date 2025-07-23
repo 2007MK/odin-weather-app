@@ -109,9 +109,8 @@ function displayData() {
   for(let i = 0; i < cardTitles.length; i++) {
     cardTitles[i].textContent = next7days[i].day;
     weatherIcons[i].src = icons[next7days[i].icon];
-    maxTemps[i].textContent = Math.round(next7days[i].tempmax);
-    minTemps[i].textContent = Math.round(next7days[i].tempmin);
-
+    maxTemps[i].textContent = Math.round(next7days[i].tempmax) + "\u00B0";
+    minTemps[i].textContent = Math.round(next7days[i].tempmin) + "\u00B0";
   }
 
   console.log(cardTitles);

@@ -88,29 +88,33 @@ const render = (function () {
     // rendering header
     let header = document.createElement('div');
     header.setAttribute('class', 'header');
-    let toggleUnit = document.createElement('div');
-    toggleUnit.setAttribute('class', 'toggleUnit');
-    let btnCelsius = document.createElement('button');
-    btnCelsius.setAttribute('class', 'unitBtn');
-    btnCelsius.id = "celsius";
-    btnCelsius.textContent = '\u00B0' + 'C';
-    let btnFahrenheit = document.createElement('button');
-    btnFahrenheit.setAttribute('class', 'unitBtn');
-    btnFahrenheit.id = "fahrenheit";
-    btnFahrenheit.textContent = '\u00B0' + 'F';
-    btnFahrenheit.classList.add('selected')
 
-    toggleUnit.appendChild(btnCelsius);
-    toggleUnit.appendChild(btnFahrenheit);
+    let heading = document.createElement('h2');
+    heading.textContent = "Next 7 days forecast";
+    // let toggleUnit = document.createElement('div');
+    // toggleUnit.setAttribute('class', 'toggleUnit');
+    // let btnCelsius = document.createElement('button');
+    // btnCelsius.setAttribute('class', 'unitBtn');
+    // btnCelsius.id = "celsius";
+    // btnCelsius.textContent = '\u00B0' + 'C';
+    // let btnFahrenheit = document.createElement('button');
+    // btnFahrenheit.setAttribute('class', 'unitBtn');
+    // btnFahrenheit.id = "fahrenheit";
+    // btnFahrenheit.textContent = '\u00B0' + 'F';
+    // btnFahrenheit.classList.add('selected')
 
-    header.appendChild(toggleUnit);
+    // toggleUnit.appendChild(btnCelsius);
+    // toggleUnit.appendChild(btnFahrenheit);
 
+    // header.appendChild(toggleUnit);
+    header.appendChild(heading);
     main.appendChild(header);
 
 
     //rendering forecast
     let forecast = document.createElement('div');
     forecast.setAttribute('class', 'forecast');
+    
     //generating the cards for the next 7 days
     for (let i = 0; i < 7; i++) {
       let cardSmall = document.createElement('div');
@@ -137,10 +141,14 @@ const render = (function () {
       cardSmall.appendChild(img);
       cardSmall.appendChild(temp);
 
+
       forecast.appendChild(cardSmall);
+
     }
     
     main.appendChild(forecast);
+
+    //highlights section
   }
 
   return { sidebar, main };

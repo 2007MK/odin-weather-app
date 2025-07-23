@@ -9,7 +9,6 @@ body {
 }
 
 .container {
-  border: 1px solid black;
   height: 100vh;
   width: 100vw;
   display: grid;
@@ -19,12 +18,12 @@ body {
 
 .sidebar {
   grid-area: sidebar;
-  border: 1px solid blue;
   background-color: #ffffff;
   padding: 20px;
   display: flex;
   gap: 20px;
   flex-direction: column;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   /* align-items: center; */
 }
 
@@ -35,18 +34,26 @@ body {
 }
 
 .search-container > input[type="search"] {
-  /* border-radius: 15px; */
-  padding: 8px 8px;
-  background-color: transparent;
+  padding: 0.6rem 1.2rem;
   border: none;
-  border-bottom: 1px solid black;
+  border-radius: 10px;
+  font-size: 1rem;
+  width: 220px;
+  background: #fcf7fa;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  outline: none;
 }
 
 .search-container > button {
-  border: none;
-  background-color: green;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
   color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
 }
 
 .sidebar > img {
@@ -80,17 +87,20 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: darkblue;
-  color: white;
+  /* background: linear-gradient(135deg, #2995f4, #00f2fe); */
+  /* background: linear-gradient(135deg, #1e3c72, #2a5298); */
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+/* background: linear-gradient(135deg, #f5f7fa, #c3cfe2); */
+  color: #333;
   height: 100px;
   border-radius: 20px;
   font-size: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .main {
   background-color: #fafafa;
   grid-area: main;
-  border: 1px solid red;
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -99,7 +109,10 @@ body {
 .header {
   display: flex;
   height: auto;
-  border: 1px solid pink;
+}
+
+.header > h2 {
+  margin-bottom: 20px;
 }
 
 .toggleUnit {
@@ -126,20 +139,21 @@ body {
 
 .main > .forecast {
   display: flex;
+  flex-wrap: wrap;
   background-color: #ffffff;
-  border: 2px solid black;
   gap: 8px;
 }
 
 .forecast > .card-small {
   height: 7rem;
   border-radius: 15px;
-  flex-basis: 500px;
+  flex-basis: 250px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border: 2px solid blue;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .card-small > img {
@@ -147,3 +161,12 @@ body {
   width : 50px;
   }
 
+.max-temp {
+  font-size: 20px;
+}
+
+.min-temp {
+  color: gray;
+  margin-left: 5px;
+  font-size: 15px;
+}
