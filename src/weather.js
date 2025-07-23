@@ -15,20 +15,21 @@ const weatherDataHandler = (function () {
   }
 
   async function fetchData(location) {
-    try {
-      const response = await fetch(
-        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/?key=${API_KEY}`,
-      );
+  let loader = document.getElementById("loading-overlay");
+  try {
+    loader.style.display = "block";
+    const response = await fetch(
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/?key=${API_KEY}`,
+    );
 
-      if (!response.ok) {
-        throw new Error(`Couldn't fetch the weather data for ${location}`);
-      }
+    if (!response.ok) {
+      throw new Error(`Couldn't fetch the weather data for ${location}`);
+    }
 
-      const data = await response.json(); 
-      console.log(data);
+    const data = await response.json(); 
+    console.log(data);
 
-      //getting the data I need
-
+    // Getting the data I need
     let mainWeatherIcon = data.currentConditions.icon;
     mainWeatherIcon = mainWeatherIcon.split("-").join("");
 
@@ -54,26 +55,40 @@ const weatherDataHandler = (function () {
     // Address
     const address = data.resolvedAddress;
 
-    
     // Next 7 days forecast
     let next7days = {};
     for (let i = 0; i < 7; i++) {
-      let dayData = data.days[i+1];
-      const {tempmax, tempmin, icon} = dayData;
-      next7days[i] = {tempmax, tempmin,
-        icon : dayData.icon.split('-').join(""),
+      let dayData = data.days[i + 1];
+      const { tempmax, tempmin, icon } = dayData;
+      next7days[i] = {
+        tempmax,
+        tempmin,
+        icon: icon.split('-').join(""),
         day: format(new Date(dayData.datetimeEpoch * 1000), "eeee"),
-      }
+      };
     }
-    
-    weatherData = {mainWeatherIcon, temp, day, time, condition, precipitation, address, next7days}
+
+    weatherData = {
+      mainWeatherIcon,
+      temp,
+      day,
+      time,
+      condition,
+      precipitation,
+      address,
+      next7days
+    };
 
     console.log(weatherData);
     displayData();
-    } catch (error) {
-      console.error(error);
-    }
+
+  } catch (error) {
+    console.error(error);
+  } finally {
+    console.log('hiding the loader...');
+    loader.style.display = "none";
   }
+}
 
   function ConvertToCelsius(temp) {
     return ((temp - 32) * 5) / 9;
